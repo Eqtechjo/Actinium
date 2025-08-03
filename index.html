@@ -1,0 +1,634 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>HiAi - Smart Security Solutions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    
+    <style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f2f6fa;
+    color: #1c1c1c;
+
+    scrollbar-width: thin;
+    scrollbar-color: #004c92 #e0e6ed;
+  }
+body, html {
+  overflow-x: hidden;
+}
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e0e6ed;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #004c92;
+    border-radius: 10px;
+    border: 2px solid #e0e6ed;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
+
+  header {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #004c92;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #333;
+  }
+
+  .cta-btn {
+    background: #004c92;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+
+  .cta-btn:hover {
+    background: #333;
+    color: #fff;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: #004c92;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+      background-color: #fff;
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      padding: 20px 0;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      animation: slideDown 0.3s ease;
+      align-items: flex-end; /* قوائم من اليمين */
+      text-align: right;
+    }
+
+    nav ul.active {
+      display: flex;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .cta-btn {
+      display: none; /* إخفاء الزر على الموبايل والتابلت */
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* الـ Hero */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+  }
+
+  .hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-slide::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* الطبقة الداكنة */
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+  }
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  z-index: 2;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #757AD1;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+  font-weight: 700;
+}
+
+.hero-text h1 .sub-text {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 32px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+}
+
+.hero-text p {
+  font-size: 20px;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    padding: 20px 20px;
+        height: 65vh; /* تقليل الارتفاع قليلاً ليكون مناسب */
+
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text h1 .sub-text {
+    font-size: 16px;
+  }
+
+  .hero-text p {
+    font-size: 12px;
+  }
+}
+
+      section {
+        padding: 30px 40px;
+      }
+      .grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      .card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .card .content {
+        padding: 20px;
+      }
+      .card h3 {
+        margin: 0 0 10px;
+        color: #004c92;
+      }
+
+      /* ====== القسم الجديد ====== */
+      .surveillance-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        padding: 50px 35px;
+        background: white;
+        border-radius: 10px;
+        max-width: 1200px;
+        margin: 0 auto 80px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.07);
+        flex-wrap: wrap;
+      }
+      .surveillance-text {
+        flex: 1 1 500px;
+        color: #1c1c1c;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .surveillance-text strong {
+        color: #004c92;
+        font-weight: 600;
+        font-size: 22px;
+        display: block;
+        margin-bottom: 15px;
+      }
+      .surveillance-image {
+        flex: 1 1 400px;
+        text-align: center;
+      }
+      .surveillance-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      }
+
+      footer {
+        background: #004c92;
+        color: white;
+        padding: 40px 60px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      footer .info, footer .social {
+        flex: 1 1 300px;
+      }
+      footer a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+      }
+      footer a i {
+        margin-right: 8px;
+      }
+
+  #product-categories {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #product-categories .category-list {
+    list-style: none;
+  padding-top: 10px !important; /* أو أقل */
+    margin: 0;
+    color: #ddd;
+    background: #2f2f2f;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #product-categories .category-list li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #004c92;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  #product-categories .category-list li:last-child {
+    border-bottom: none;
+  }
+
+  #product-categories .category-list li span {
+    width: 6px;
+    height: 24px;
+    background: #004c92;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+  }
+
+  #product-categories .category-list li:hover {
+    background-color: #004c92;
+    color: #fff;
+  }
+
+  #product-categories .category-list li:hover span {
+    background: #a0c4ff;
+  }
+    </style>
+  </head>
+  <body>
+
+<header>
+  <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1754179601/actinium__1__page-0001-removebg-preview-removebg-preview_oiws0m_1_1_1_liha8b.png" alt="Logo">
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <nav>
+<ul id="nav-menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="Products&Solutions.html">Products & Solutions</a></li>
+  <li><a href="Industries.html">Industries</a></li>
+  <li><a href="Services.html">Services</a></li>
+  <li><a href="Events.html">Events</a></li>
+    <li><a href="AboutUs.html">About Us</a></li>
+  <li><a href="ContactUs.html">Contact Us</a></li>
+</ul>
+  </nav>
+
+  <a href="https://forms.gle/1pYT5ncYJcAn7agcA" class="cta-btn">Get a Quote</a>
+</header>
+
+<div class="hero">
+  <div class="hero-slide active" style="background-image: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1753210705/2_slro6t.png');">
+    <div class="hero-text">
+      <h1>Advanced Medical Technology  <span class="sub-text"></span></h1>
+      <p>Cutting-edge equipment for clinics and hospitals with top efficiency</p>
+    </div>
+  </div>
+  <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1753210874/1_nhgbbh.png');">
+    <div class="hero-text">
+      <h1>SPrecise Lab Solutions</h1>
+      <p>High-performance lab devices for fast and accurate results.</p>
+    </div>
+  </div>
+  <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1754181234/pngtree-futuristic-medical-devices-image_2653609_pjcl6g.jpg');">
+    <div class="hero-text">
+      <h1>Reliable Service & Support</h1>
+      <p>Installation, training, and maintenance — a full experience you can trust.
+</p>
+    </div>
+  </div>
+</div>
+
+
+    <!-- القسم الجديد -->
+    <section class="surveillance-section" aria-label="The best surveillance cameras">
+      <div class="surveillance-image">
+        <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1754181796/team-scientists-working-laboratory-carefully-conducting-experiments-analyzing-data-generative-ai_212944-24381_zcq0m9.avif" alt="Surveillance camera image" />
+      </div>
+      <div class="surveillance-text">
+        <strong>Trusted by Healthcare Professionals</strong>
+        <p>At Actinio, we proudly serve hospitals, clinics, and laboratories with reliable medical and laboratory equipment. Our commitment to quality and precision makes us a trusted partner in the healthcare sector.
+</p>
+        <p>Every camera from CCTV Camera world provides unbeatable value &amp; quality to protect your home or business to keep an eye when away.</p>
+      </div>
+   <section class="features-section" aria-label="Why Choose Actinio" style="max-width:1200px;margin:0 auto 80px;padding:80px 60px;background:#fff;border-radius:10px;box-shadow:0 4px 25px rgba(0,0,0,0.1);">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:60px;justify-content:center;">
+
+    <div class="image-box" style="flex:1 1 400px;min-width:300px;text-align:center;order:2;">
+      <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1754182094/Untitled_design_63_c5oigj.png"
+           alt="Why Choose Us"
+           style="max-width:70%;height:auto;border-radius:15px;filter:drop-shadow(0 6px 12px rgba(0,0,0,0.15));" />
+    </div>
+
+    <div class="points-box" style="flex:1 1 300px;min-width:280px;display:flex;flex-direction:column;gap:30px;font-family:'Poppins',sans-serif;order:1;">
+      <h2 style="color:#004c92;font-size:28px;font-weight:700;margin-bottom:10px;">
+        🎯 Why Choose Us
+      </h2>
+
+      <!-- الخبرة (أيقونة جديدة) -->
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/004c92/brain.png" width="44" height="44" alt="Expertise" style="image-rendering: crisp-edges;" />
+        <p style="margin:0;font-size:16px;color:#333;"><strong>Proven expertise</strong> and industry knowledge</p>
+      </div>
+
+      <!-- الجودة -->
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/004c92/verified-account.png" width="44" height="44" alt="Certified Products" style="image-rendering: crisp-edges;" />
+        <p style="margin:0;font-size:16px;color:#333;"><strong>Certified</strong> and high‑quality products</p>
+      </div>
+
+      <!-- التسعير -->
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://img.icons8.com/fluency/48/004c92/price-tag-euro.png" width="44" height="44" alt="Pricing" style="image-rendering: crisp-edges;" />
+        <p style="margin:0;font-size:16px;color:#333;"><strong>Competitive pricing</strong> and efficient delivery</p>
+      </div>
+
+      <!-- الدعم -->
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/004c92/customer-support.png" width="44" height="44" alt="Customer Support" style="image-rendering: crisp-edges;" />
+        <p style="margin:0;font-size:16px;color:#333;"><strong>Exceptional service</strong> and technical support</p>
+      </div>
+
+      <!-- الابتكار -->
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/004c92/innovation.png" width="44" height="44" alt="Innovation" style="image-rendering: crisp-edges;" />
+        <p style="margin:0;font-size:16px;color:#333;"><strong>Commitment</strong> to innovation & sustainability</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  </div>
+
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column !important;
+    }
+    .image-box {
+      order: 2 !important;
+    }
+    .points-box {
+      order: 1 !important;
+    }
+  }
+</style>
+
+
+    </div>
+<section id="product-categories" style="padding: 30px 10px; background: #ffffff; max-width: 700px; margin: 0 auto;">
+  <h2 style="text-align: center; font-size: 30px; color: #004c92; margin-bottom: 20px;">Our Product Categories</h2>
+  <p style="text-align: center; max-width: 600px; margin: 0 auto 40px; font-size: 16px; color: #333;">
+    Explore our wide range of premium medical and laboratory equipment to meet all your professional needs.
+  </p>
+
+  <ul class="category-list">
+    <li>Chromatography<span></span></li>
+    <li>Spectroscopy<span></span></li>
+    <li>Weighing Solutions<span></span></li>
+    <li>Analytical instruments<span></span></li>
+    <li>Reagents & Chemicals<span></span></li>
+    <li>Raw Materials<span></span></li>
+    <li>Laboratory Glassware<span></span></li>
+    <li>Microbiology<span></span></li>
+    <li>Consumables<span></span></li>
+  </ul>
+</section>
+    </div>
+  </div>
+</section>  
+
+</section>
+
+
+    </section>
+
+<footer>
+  <div class="info">
+    <h3>Actinium Contact</h3>
+    <a href="tel:0798547669"><i class="fas fa-phone"></i> 07981232158</a>
+    <a href="mailto:info@hiai-ai.com"><i class="fas fa-envelope"></i> info@Actinium.com</a>
+    <a href="https://wa.me/message/"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+  </div>
+  <div class="social">
+    <h3>Follow Us</h3>
+    <a href="https://www.facebook.com/share//"><i class="fab fa-facebook"></i> Facebook</a>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <p style="margin-bottom:8px; font-family: Arial, sans-serif; font-size:14px; color:#aaa;">
+      Website developed by
+    </p>
+<img
+  src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1751767267/Untitled_design_46_l0l0mt.png"
+  alt="EQtech Jordan Logo"
+  width="70"
+  style="display:inline-block; 
+         box-shadow: 0 0 0px0px rgba(255, 255, 255, 0.15);"
+/>
+
+  </div>
+</footer>
+
+    <script>
+      const slides = document.querySelectorAll('.hero-slide');
+      let current = 0;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 5000);
+        const header = document.querySelector('header');
+
+  // نضيف الانتقالات للحركة
+  header.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 10) {
+      header.style.boxShadow = '0 12px 28px rgba(0, 0, 0, 0.2)';
+      header.style.transform = 'translateY(-6px)';
+    } else {
+      header.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.08)';
+      header.style.transform = 'translateY(0)';
+    }
+  });
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-visible');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  const sections = document.querySelectorAll(
+    '.hero, .card, .surveillance-section, section'
+  );
+
+  sections.forEach(sec => {
+    // تأثير مخصص لـ hero
+    if (sec.classList.contains('hero')) {
+      sec.style.opacity = 0;
+      sec.style.transform = 'scale(0.95)';
+      sec.style.transition = 'all 1s ease-out';
+    } else {
+      sec.style.opacity = 0;
+      sec.style.transform = 'translateY(50px)';
+      sec.style.transition = 'all 0.8s ease-out';
+    }
+    observer.observe(sec);
+  });
+
+  // كلاس التنشيط العام والخاص بالـ hero
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .animate-visible.hero {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+
+    .animate-visible:not(.hero) {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  `;
+  document.head.appendChild(style);
+    </script>

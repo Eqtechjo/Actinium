@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - HiAi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f2f6fa;
+    color: #1c1c1c;
+
+    scrollbar-width: thin;
+    scrollbar-color: #004c92 #e0e6ed;
+  }
+body, html {
+  overflow-x: hidden;
+}
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e0e6ed;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #004c92;
+    border-radius: 10px;
+    border: 2px solid #e0e6ed;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
+
+  header {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #004c92;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #333;
+  }
+
+  .cta-btn {
+    background: #004c92;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+
+  .cta-btn:hover {
+    background: #333;
+    color: #fff;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: #004c92;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+      background-color: #fff;
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      padding: 20px 0;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      animation: slideDown 0.3s ease;
+      align-items: flex-end; /* قوائم من اليمين */
+      text-align: right;
+    }
+
+    nav ul.active {
+      display: flex;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .cta-btn {
+      display: none; /* إخفاء الزر على الموبايل والتابلت */
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    /* بانر About Us */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1754185078/premium_photo-1661578738174-cc9ca79dc742_cfhvvv.avif') center/cover no-repeat;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1.5s ease;
+      border-radius: 10px;
+      margin: 40px auto 60px;
+      max-width: 1200px;
+    }
+    .banner.visible {
+      opacity: 1;
+    }
+    .banner h1 {
+      color: white;
+      font-size: 48px;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      user-select: none;
+    }
+    @media (max-width: 600px) {
+      .banner {
+        height: 180px;
+        margin: 20px auto 40px;
+      }
+      .banner h1 {
+        font-size: 32px;
+      }
+    }
+
+.about-section {
+  max-width: 1000px;
+  background: #ffffff;
+  margin: 60px auto;
+  padding: 70px 60px;
+  border-radius: 16px;
+  box-shadow: 0 10px 35px rgba(0, 76, 146, 0.1);
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+  direction: ltr;
+  text-align: left;
+}
+
+.about-section.visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.about-section h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #004c92;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.about-section p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #34495e;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+
+.about-section p strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #004c92;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: #ff8c00;
+  font-weight: 700;
+  font-size: 22px;
+  font-style: italic;
+  display: inline-block;
+  margin-top: 20px;
+  text-shadow: 0 1px 2px rgba(255, 140, 0, 0.4);
+}
+
+.icon-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 45px;
+  background-color: #f9fbfc;
+  padding: 20px 24px;
+  border-radius: 12px;
+  border-left: 5px solid #004c92;
+  transition: background-color 0.3s ease;
+}
+
+.icon-text:hover {
+  background-color: #eef7ff;
+}
+
+.icon-text img {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  margin-top: 6px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.icon-text div {
+  flex: 1;
+}
+
+.icon-text strong {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: block;
+  color: #002d59;
+}
+
+.icon-text p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 50px 30px;
+  }
+
+  .about-section h1 {
+    font-size: 34px;
+  }
+
+  .about-section p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .icon-text {
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 35px;
+  }
+
+  .icon-text img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-text strong {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-text {
+    flex-direction: column;
+    text-align: center;
+    border-left: none;
+    padding: 16px;
+  }
+
+  .icon-text img {
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+
+  .icon-text div {
+    text-align: center;
+  }
+}
+  footer {
+        background: #004c92;
+        color: white;
+        padding: 40px 60px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      footer .info, footer .social {
+        flex: 1 1 300px;
+      }
+      footer a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+      }
+      footer a i {
+        margin-right: 8px;
+      }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1754179601/actinium__1__page-0001-removebg-preview-removebg-preview_oiws0m_1_1_1_liha8b.png" alt="Logo">
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <nav>
+<ul id="nav-menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="Products&Solutions.html">Products & Solutions</a></li>
+  <li><a href="Industries.html">Industries</a></li>
+  <li><a href="Services.html">Services</a></li>
+  <li><a href="Events.html">Events</a></li>
+    <li><a href="AboutUs.html">About Us</a></li>
+  <li><a href="ContactUs.html">Contact Us</a></li>
+</ul>
+  </nav>
+
+  <a href="https://forms.gle/1pYT5ncYJcAn7agcA" class="cta-btn">Get a Quote</a>
+</header>
+
+
+<div class="banner" role="banner" aria-label="About Us Banner">
+  <h1>About Us</h1>
+</div>
+
+<section id="about" class="about-section" aria-label="About Us Actinium">
+  <h1>About Actinium</h1>
+
+  <p>
+    <strong>Actinium</strong> is a leading provider of high-quality laboratory and scientific supplies based in Jordan.
+    Since our establishment, we have been dedicated to supporting the scientific, pharmaceutical, educational, healthcare, and industrial sectors
+    with advanced solutions that meet both local and international standards.
+  </p>
+
+  <div class="icon-text">
+    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991123.png" alt="Mission icon" />
+    <div>
+      <strong>Mission Statement</strong>
+      <p>
+        To empower scientific excellence and technological innovation across Jordan and the MENA region by delivering advanced laboratory solutions,
+        precision instruments, and technical expertise. We are committed to enabling breakthroughs in research, healthcare, and industry by aligning global
+        standards with local needs, ensuring reliability, compliance, and long-term value for our partners.
+      </p>
+    </div>
+  </div>
+
+  <div class="icon-text">
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Vision icon" />
+    <div>
+      <strong>Vision Statement</strong>
+      <p>
+        To be the leading catalyst for scientific and analytical progress in Jordan and the wider region, recognized for our integrity, innovation, and impact.
+        We envision a future where every laboratory — academic, clinical, or industrial — is equipped to operate at the highest international standards.
+      </p>
+    </div>
+  </div>
+
+  <div class="icon-text">
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="Analytical instruments icon" />
+    <div>
+      <strong>Our Expertise</strong>
+      <p>
+        We specialize in supplying analytical and precision instruments, laboratory consumables and chemicals, microbiological and pharmaceutical testing materials,
+        environmental and water testing equipment, educational lab solutions, and calibration & validation support.
+      </p>
+    </div>
+  </div>
+
+  <div class="icon-text">
+    <img src="https://cdn-icons-png.flaticon.com/512/748/748113.png" alt="Collaboration icon" />
+    <div>
+      <strong>Global Partnerships</strong>
+      <p>
+        We proudly collaborate with globally recognized manufacturers and brands to ensure our clients receive reliable, innovative, and compliant tools
+        that enhance their scientific capabilities.
+      </p>
+    </div>
+  </div>
+
+  <p class="highlight" style="margin-top: 40px;">
+    “Empowering science, advancing tomorrow”
+  </p>
+</section>
+<footer>
+  <div class="info">
+    <h3>Actinium Contact</h3>
+    <a href="tel:0798547669"><i class="fas fa-phone"></i> 07981232158</a>
+    <a href="mailto:info@hiai-ai.com"><i class="fas fa-envelope"></i> info@Actinium.com</a>
+    <a href="https://wa.me/message/"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+  </div>
+  <div class="social">
+    <h3>Follow Us</h3>
+    <a href="https://www.facebook.com/share//"><i class="fab fa-facebook"></i> Facebook</a>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <p style="margin-bottom:8px; font-family: Arial, sans-serif; font-size:14px; color:#aaa;">
+      Website developed by
+    </p>
+<img
+  src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1751767267/Untitled_design_46_l0l0mt.png"
+  alt="EQtech Jordan Logo"
+  width="70"
+  style="display:inline-block; 
+         box-shadow: 0 0 0px0px rgba(255, 255, 255, 0.15);"
+/>
+
+  </div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    const banner = document.querySelector('.banner');
+    const aboutSection = document.querySelector('.about-section');
+
+    // تأثير الهيدر عند التمرير
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.style.boxShadow = '0 10px 30px rgba(0, 76, 146, 0.3)';
+        header.style.transform = 'translateY(-4px)';
+      } else {
+        header.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.08)';
+        header.style.transform = 'translateY(0)';
+      }
+    });
+
+    // تأثير فيد إن للبانر بعد تحميل الصفحة
+    setTimeout(() => {
+      banner.classList.add('visible');
+    }, 200);
+
+    // تأثير ظهور قسم About Us عند التمرير
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          aboutSection.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(aboutSection);
+  });
+    function toggleMenu() {
+    document.getElementById('nav-menu').classList.toggle('active');
+  }
+</script>
+
